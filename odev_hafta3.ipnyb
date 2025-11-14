@@ -1,0 +1,117 @@
+import numpy as np
+
+# 1) 0 ile 9 arasındaki tam sayılardan oluşan 1D dizi
+arr1 = np.arange(10)
+print("1:", arr1)
+
+# 2) 3x4 sıfır matrisi
+mat_zeros = np.zeros((3, 4))
+print("\n2:\n", mat_zeros)
+
+# 3) 2x3 bir matris
+mat_ones = np.ones((2, 3))
+print("\n3:\n", mat_ones)
+
+# 4) arange reshape özellikleri
+d = np.arange(12).reshape(3, 4)
+print("\n4 - shape:", d.shape)
+print("4 - size:", d.size)
+print("4 - ndim:", d.ndim)
+
+# 5) Listeyi int64 NumPy dizisine dönüştürme
+arr_int64 = np.array([10, 20, 30, 40], dtype=np.int64)
+print("\n5:", arr_int64, arr_int64.dtype)
+
+# 6) 5'ten büyük 15'ten küçük elemanlar
+filt = np.arange(20)
+result = filt[(filt > 5) & (filt < 15)]
+print("\n6:", result)
+
+# 7) Diziler
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+print("\n7: a =", a, " b =", b)
+
+# 8) Toplam & çarpım
+print("\n8 Toplam:", a + b)
+print("8 Çarpım:", a * b)
+
+# 9) 5x5 matris
+M = np.arange(1, 26).reshape(5, 5)
+print("\n9:\n", M)
+
+# 10) İkinci satır & üçüncü sütun
+print("\n10 İkinci satır:", M[1])
+print("10 Üçüncü sütun:", M[:, 2])
+
+# 11-12) Transpose – 3x2 rastgele matris
+rand_mat = np.random.randint(1, 10, (3, 2))
+print("\n11-12 Matris:\n", rand_mat)
+print("11-12 Transpose:\n", rand_mat.T)
+
+# 13-14) NaN sayısı
+dizi = np.array([1, 2, np.nan, 4, 5, np.nan, 7])
+print("\n14 NaN sayısı:", np.isnan(dizi).sum())
+
+# 15) 5x5 rastgele tam sayılar
+R = np.random.randint(1, 50, (5, 5))
+print("\n15:\n", R)
+
+# 16) Ortalama, max, sütun bazında std
+print("\n16 Ortalama:", R.mean())
+print("16 Max:", R.max())
+print("16 Sütun std:", R.std(axis=0))
+
+# 17) hstack - vstack
+a2 = np.array([1, 2])
+b2 = np.array([3, 4])
+print("\n17 hstack:", np.hstack([a2, b2]))
+print("17 vstack:\n", np.vstack([a2, b2]))
+
+# 18-19) Matris çarpımı
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+print("\n18-19 Matris çarpımı:\n", A.dot(B))
+
+# 20-21) Rastgele matris ve merkezleme
+X = np.random.randint(1, 10, (5, 5))
+print("\n20:", X)
+
+col_means = X.mean(axis=0)
+centered = X - col_means
+print("\n21 Merkezlenmiş matris:\n", centered)
+
+# 22-24) Determinant ve ters
+C = np.array([[4, 7], [2, 6]])
+det = np.linalg.det(C)
+inv = np.linalg.inv(C)
+identity_check = C @ inv
+
+print("\n23 Determinant:", det)
+print("24 Tersi:\n", inv)
+print("24 Kontrol (Identity):\n", identity_check)
+
+# 25) Benzersiz elemanlar & sayıları
+veri = np.array([1, 2, 1, 4, 5, 2, 7, 1])
+uniq, counts = np.unique(veri, return_counts=True)
+print("\n25 Benzersiz:", uniq)
+print("25 Sayılar:", counts)
+
+# 26-27) Normal dağılım + clipping
+dizi2 = np.random.randn(100)
+clipped = np.clip(dizi2, -2, 2)
+print("\n27 Clip örnek:", clipped[:10])
+
+# 28-29) Nokta & dış ürün
+v1 = np.array([1, 2, 3])
+v2 = np.array([4, 5, 6])
+
+print("\n29 Dot:", np.dot(v1, v2))
+print("29 Outer:\n", np.outer(v1, v2))
+
+# 30) 1.000.000 elemanlı liste ve NumPy dizisi
+py_list = list(range(1_000_000))
+np_array = np.arange(1_000_000)
+
+print("\n30 Tamamlandı (büyük veri oluştu).")
